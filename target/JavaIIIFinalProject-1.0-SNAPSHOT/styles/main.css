@@ -1,0 +1,56 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: hsl(197,65%,56%);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: hsl(197,50%,56%);
+}
+.pagination{
+    font-size: 0;
+    margin: 0 0 10px;
+    text-align: center;
+}
+.pagination a{
+    display: inline-block;
+    background-color: hsl(196,65%,56%);
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 15px;
+    text-align: center;
+    
+}
+.pagination a.active{
+    background-color: hsl(196,65%,46%);
+}
+
+.jobs{
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    margin: 10px 100px;
+    text-align: center;
+}
+
+.activeNavBar{
+    background-color: hsl(197,65%,45%);
+}
+
+p{
+    font-size: 20px;
+}

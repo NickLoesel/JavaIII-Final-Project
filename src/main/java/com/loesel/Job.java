@@ -8,10 +8,9 @@ package com.loesel;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import javax.swing.text.DateFormatter;
 
+public class Job implements Comparable<Job> {
 
-public class Job {
     private int id;
     private boolean active;
     private LocalDate dateCreated;
@@ -23,8 +22,9 @@ public class Job {
     private String experience;
     private String wageCategory;
     private double salary;
+    private String jobDescription;
 
-    public Job(int id, boolean active, LocalDate dateCreated, String title, String city, String state, boolean fullTime, String department, String experience, String wageCategory, double salary) {
+    public Job(int id, boolean active, LocalDate dateCreated, String title, String city, String state, boolean fullTime, String department, String experience, String wageCategory, double salary, String jobDescription) {
         this.id = id;
         this.active = active;
         this.dateCreated = dateCreated;
@@ -36,9 +36,9 @@ public class Job {
         this.experience = experience;
         this.wageCategory = wageCategory;
         this.salary = salary;
+        this.jobDescription = jobDescription;
     }
-    
-    
+
     public Job() {
         id = 0;
         active = false;
@@ -51,10 +51,8 @@ public class Job {
         experience = "";
         wageCategory = "";
         salary = 0.0;
+        jobDescription = "";
     }
-    
-    
-    
 
     public int getId() {
         return id;
@@ -144,30 +142,30 @@ public class Job {
         this.salary = salary;
     }
 
+    public String getJobDescription() {
+        return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
+
     @Override
     public String toString() {
         return "Title = " + title + ", Active = " + active + ", City =" + city + ", State = " + state + ", Department = " + department;
     }
-    
-    public Date newDateCreated(LocalDate dateCreated ){
+
+    public Date newDateCreated(LocalDate dateCreated) {
         Date date = Date.from(dateCreated.atStartOfDay(ZoneId.systemDefault()).toInstant());
         return date;
     }
-    
+
     @Override
     public int compareTo(Job otherJob) {
-        if (this.dateCreated.compareTo(otherJob.dateCreated) > 0) {
-            return this.dateCreated.compareTo(otherJob.dateCreated);
+        int result = this.dateCreated.compareTo(otherJob.dateCreated);
+        if (result == 0) {
+            result = this.title.compareTo(otherJob.title);
         }
-        if (this.dateCreated.compareTo(otherJob.dateCreated) == 0) {
-            return this.title.compareTo(otherJob.title);
-        }
-        else {
-            return otherJob.dateCreated.compareTo(this.dateCreated);
-        }
+        return result;
     }
-    
-    
-    
-    
 }
