@@ -22,8 +22,8 @@
                 </ul>
             </nav>
         </header>
-        <h1>You Must login to view the current applications.</h1>
-        <form method="POST" action="<c:url value="/login" />">
+        <h1 class = "login">You Must login to view the current applications</h1>
+        <form class = "loginForm" method="POST" action="<c:url value="/login" />">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" /><br><br>
             <label for="password">Password</label>

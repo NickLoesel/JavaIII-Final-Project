@@ -34,6 +34,29 @@ public class Application implements Serializable, Comparable<Application> {
     private LocalDate earliestStartDate;
     private String startDateError;
 
+    
+        public Application(){
+        this.id = 0;
+        this.jobid = 0;
+        this.jobTitle = "";
+        this.dateTimeSubmitted = Instant.now();
+        this.active = true;
+        this.firstName = "";
+        this.firstNameError = "";
+        this.lastName = "";
+        this.lastNameError = "";
+        this.email = "";
+        this.emailError = "";
+        this.phone = "";
+        this.phoneError = "";
+        this.resumeUpload = new Attachment();
+        this.resumeError = "";
+        this.desiredSalary = 0.0;
+        this.salaryError = "";
+        this.earliestStartDate = LocalDate.now();
+        this.startDateError = "";
+    }
+        
     public Application(int id, int jobid, String jobTitle, Instant dateTimeSubmitted, boolean active, String firstName, String firstNameError, String lastName, String lastNameError, String email, String emailError, String phone, String phoneError, Attachment resumeUpload, String resumeError, double desiredSalary, String salaryError, LocalDate earliestStartDate, String startDateError) {
         this.id = id;
         this.jobid = jobid;
@@ -56,27 +79,6 @@ public class Application implements Serializable, Comparable<Application> {
         this.startDateError = startDateError;
     }
     
-    public Application(){
-        id = 0;
-        jobid = 0;
-        jobTitle = "";
-        dateTimeSubmitted = Instant.now();
-        active = true;
-        firstName = "";
-        firstNameError = "";
-        lastName = "";
-        lastNameError = "";
-        email = "";
-        emailError = "";
-        phone = "";
-        phoneError = "";
-        resumeUpload = new Attachment();
-        resumeError = "";
-        desiredSalary = 0.0;
-        salaryError = "";
-        earliestStartDate = LocalDate.now();
-        startDateError = "";
-    }
     
 
     public int getId() {
@@ -232,8 +234,13 @@ public class Application implements Serializable, Comparable<Application> {
     }
     
     @Override
-    public int compareTo(Application o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int compareTo(Application otherApplication) {
+        return this.dateTimeSubmitted.compareTo(otherApplication.dateTimeSubmitted);
+    }
+    
+    @Override
+    public String toString() {
+        return "Job Title = " + jobTitle + ", First Name = " + firstName + ", Last Name =" + lastName + ", Email = " + email;
     }
 
 }

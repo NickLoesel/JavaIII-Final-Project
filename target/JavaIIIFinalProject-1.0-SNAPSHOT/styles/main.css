@@ -1,25 +1,26 @@
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: hsl(197,65%,56%);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: hsl(197,65%,56%);
 }
 
 li {
-  float: left;
+    float: left;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 30px;
 }
 
 li a:hover {
-  background-color: hsl(197,50%,56%);
+    background-color: hsl(197,50%,56%);
 }
 .pagination{
     font-size: 0;
@@ -33,7 +34,7 @@ li a:hover {
     font-size: 20px;
     padding: 10px 15px;
     text-align: center;
-    
+
 }
 .pagination a.active{
     background-color: hsl(196,65%,46%);
@@ -42,8 +43,8 @@ li a:hover {
 .jobs{
     border-style: solid;
     border-width: 1px;
-    padding: 10px;
-    margin: 10px 100px;
+    padding: 1%;
+    margin: 1% 10%;
     text-align: center;
 }
 
@@ -54,3 +55,104 @@ li a:hover {
 p{
     font-size: 20px;
 }
+
+.Requirederror{
+    color: red;
+    visibility: hidden;
+}
+
+.error{
+    color: red;
+}
+
+.application{
+    float: left;
+    overflow: hidden;
+}
+
+.container{
+    float: left;
+    width: 100%;
+    margin: auto;
+}
+
+.header{
+    text-align: center;
+    font-size: 40px;
+}
+
+.job{
+    border-style: solid;
+    border-width: 1px;
+    padding: 1%;
+    margin: 1% 10%;
+    text-align: left;
+    font-size: 22px;
+    float:left;
+    width: 35%;
+    height: 10%;
+}
+
+.application{
+    margin-left: 1%;
+    font-size: 19px;
+}
+
+.login{
+    text-align: center;
+    color: darkblue;
+}
+
+.loginForm{
+    text-align: center;
+    font-size: 150%;
+}
+
+.noapps{
+    font-size: 200%;
+    text-align: center;
+}
+
+.sentApplication{
+    color: green;
+    font-size: 200%;
+}
+
+.inactiveResume{
+    margin-left: 20%;
+    margin-top: 3%;
+    font-size: 150%;
+}
+
+.viewApplication{
+    border-style: solid;
+    border-width: 1px;
+    padding: 1%;
+    margin: 1% 10%;
+    text-align: left;
+    font-size: 22px;
+    float:left;
+    width: 35%;
+    height: 10%;
+    
+}
+
+@media only screen and (max-width: 800px) {
+    .job{
+        margin-left: 25%;
+        font-size: 20px;
+    }
+    .application{
+        margin-left: 25%;
+        margin-bottom: 2%;
+    }
+    .viewApplication{
+        margin-left: 35%;
+        font-size: 12px;
+    }
+    .inactiveResume{
+        margin-left: 25%;
+        margin-bottom: 2%;
+    }
+}
+

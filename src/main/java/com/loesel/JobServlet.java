@@ -28,6 +28,8 @@ public class JobServlet extends HttpServlet {
     private static final String FILE_PATH = "WEB-INF/assets/";
     private static final String FILE_NAME = "jobs.tsv";
     private static SortedSet<Job> jobs;
+    private int id = 0;
+    private Job singleJob = new Job();
 
     private void readFromFile(HttpServletRequest request, HttpServletResponse response)
             throws ParserConfigurationException, MalformedURLException, IOException, SAXException {
@@ -67,13 +69,12 @@ public class JobServlet extends HttpServlet {
                     jobDescription = fields[11];
                     if (active == false) {
                         lineCount++;
-                    }
-                    else{
+                    } else {
                         jobs.add(new Job(id, active, dateCreated, title,
-                            city, state, fullTime, department, experience,
-                            wageCategory, salary, jobDescription));
+                                city, state, fullTime, department, experience,
+                                wageCategory, salary, jobDescription));
                     }
-                    
+
                 }
             } catch (FileNotFoundException fnfe) {
                 response.setContentType("text/html;charset=UTF-8");
@@ -100,6 +101,41 @@ public class JobServlet extends HttpServlet {
         } catch (ParserConfigurationException | IOException | SAXException ex) {
             return;
         }
+        String Stringid = request.getParameter("id");
+        if (Stringid == null) {
+            displayJobList(request, response);
+        } else {
+            try {
+                id = Integer.parseInt(Stringid);
+            } catch (NumberFormatException e) {
+                request.getRequestDispatcher("/WEB-INF/jsp/view/jobList.jsp");
+            }
+            displayJob(request, response);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    private void displayJobList(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         int page = 1;
         int jobsPerPage = 4;
         int begin = 0;
@@ -130,27 +166,20 @@ public class JobServlet extends HttpServlet {
 
         request.setAttribute("jobs", jobs);
         request.getRequestDispatcher("/WEB-INF/jsp/view/jobList.jsp").forward(request, response);
-
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    private void displayJob(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        getJob(id);
+        request.setAttribute("jobs", singleJob);
+        request.getRequestDispatcher("/WEB-INF/jsp/view/job.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    private Job getJob(int id) {
+        for (Job job : jobs)
+            if(job.getId() == id){
+                singleJob = job;
+            }
+        return singleJob;
     }
-
 }

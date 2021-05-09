@@ -13,17 +13,20 @@
                 <ul>
                     <li class="activeNavBar"><a href="<c:url value="/jobs" />">View Jobs</a></li>
                     <li><a href="<c:url value="/applications" />">Applications</a></li>
+                    <c:if test="${sessionScope.username != null}">
+                          <li><a href="<c:url value="/login?logout" />">Logout</a></li>
+                    </c:if>
                 </ul>
             </nav>
         </header>
         <div class ="container">
-            <h2>Job List</h2>
+            <h2 class = "header">Job List</h2>
             <div class="pagination">
                 <c:forEach var="i" begin="1" end="${maxPages}">
                     <a <c:if test="${currentPage == i}">class="active"</c:if> href="<c:url value="/jobs"><c:param name="page" value="${i}" /></c:url>">${i}</a>
                 </c:forEach>
             </div>
-            <div class="job">
+            <div>
                 <c:forEach items="${jobs}" var="jobs" begin="${begin}" end="${end}">
                     <div class="jobs">
                         <p>&nbsp;Title: <a href="<c:url value="/jobs"><c:param name="id" value="${jobs.id}" /></c:url>">${fn:escapeXml(jobs.title)} </a></p>
